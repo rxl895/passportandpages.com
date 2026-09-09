@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img">
+<defs>
+<linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#BFD9E6"/><stop offset="0.55" stop-color="#8FB6CC"/><stop offset="1" stop-color="#DCE9EE"/></linearGradient>
+<filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3"/><feColorMatrix type="saturate" values="0"/></filter>
+</defs>
+<rect width="800" height="600" fill="url(#s)"/>
+<circle cx="160" cy="150" r="48" fill="#FFFFFF" opacity=".92"/>
+<rect x="0" y="500" width="800" height="100" fill="#7FA3B8"/><rect x="60" y="522" width="120" height="3" rx="1.5" fill="#ffffff" opacity="0.16"/><rect x="190" y="548" width="112" height="3" rx="1.5" fill="#ffffff" opacity="0.14"/><rect x="320" y="574" width="104" height="3" rx="1.5" fill="#ffffff" opacity="0.12"/><rect x="60" y="600" width="96" height="3" rx="1.5" fill="#ffffff" opacity="0.10"/><rect x="190" y="626" width="88" height="3" rx="1.5" fill="#ffffff" opacity="0.08"/><rect x="320" y="652" width="80" height="3" rx="1.5" fill="#ffffff" opacity="0.06"/>
+<path d="M0 404 L130 250 L215 340 L310 216 L430 372 L520 292 L640 380 L740 318 L800 372 L800 600 L0 600 Z" fill="#6E90A8"/><path d="M0 470 L120 372 L240 462 L360 380 L470 470 L600 396 L720 466 L800 424 L800 600 L0 600 Z" fill="#4E6E88"/><path d="M0 534 C140 512 240 546 380 524 C520 502 640 540 800 520 L800 600 L0 600 Z" fill="#334F66"/>
+<rect width="800" height="600" filter="url(#g)" opacity=".07"/>
+</svg>

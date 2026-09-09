@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img">
+<defs><linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EBC489"/><stop offset="1" stop-color="#D4885F"/></linearGradient>
+<filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3"/><feColorMatrix type="saturate" values="0"/></filter></defs>
+<rect width="600" height="600" fill="url(#b)"/>
+<circle cx="300" cy="196" r="118" fill="#FFF1D2" opacity=".9"/>
+<path d="M0 402 C120 356 220 396 320 372 C430 346 520 388 600 366 L600 600 L0 600 Z" fill="#B4614A"/>
+<path d="M0 470 C120 442 240 478 360 452 C480 426 540 464 600 452 L600 600 L0 600 Z" fill="#8C4239"/>
+<circle cx="300" cy="392" r="76" fill="#3C2A2A"/>
+<path d="M188 600 C188 500 240 462 300 462 C360 462 412 500 412 600 Z" fill="#2B3B4A"/>
+<rect width="600" height="600" filter="url(#g)" opacity=".07"/>
+</svg>
