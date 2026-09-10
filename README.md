@@ -10,7 +10,8 @@ entry.html      single-entry template (copy this for each new post)
 about.html      about page
 404.html        not-found page
 assets/css/     style.css   — all styling, tokens at the top
-assets/js/      main.js     — theme, reveals, stamp grid, filters
+assets/js/      main.js     — theme, reveals, map, stamp grid, filters
+                world.js    — baked country outlines (generated; don't edit)
 assets/img/     SVG illustrations (swap for your own photos)
 CNAME           for GitHub Pages custom domain
 ```
@@ -33,16 +34,41 @@ python3 -m http.server 8000
    `<article class="card">` block; `data-region` must be one of
    `europe · asia · africa · americas` for the filters to catch it.
 
-## Add a passport stamp
+## Add a place (map pin + stamp, one line)
 
-Open `assets/js/main.js` and add a line to the `STAMPS` array at the top:
+Open `assets/js/main.js` and add a line to the `STAMPS` array at the top. This
+single array drives **three** things: the pin on the map, the highlighted
+country underneath it, and the rubber stamp in the collection grid.
 
 ```js
-{ country: "Kenya", code: "NBO", year: "2026", tone: "teal" },
+{ country: "Kenya", code: "NBO", year: "2026", tone: "teal",
+  city: "Nairobi", lat: -1.29, lon: 36.82,
+  title: "Two Weeks and a Very Old Land Cruiser", href: "entry.html" },
 ```
 
-`tone` is `red`, `teal`, `gold`, or `wish` (greyed out = haven't been yet).
-The counter on the home page updates itself.
+- `country` must match the map's spelling (Natural Earth names — e.g.
+  `"United States of America"`, `"Czechia"`, `"Bosnia and Herzegovina"`).
+  If a country doesn't light up, that's why.
+- `tone` is `red`, `teal`, `gold`, or `wish`. A `wish` entry draws a dashed
+  outline and a hollow pin, isn't clickable, and doesn't count toward the total.
+- `lat` / `lon` in decimal degrees — grab them from any map. North and east are
+  positive, south and west negative.
+- The counters on the home page update themselves.
+
+## About the map
+
+The map is plain inline SVG — no Leaflet, no Mapbox, no tile server, no API key,
+and no network requests at runtime. `assets/js/world.js` holds country outlines
+generated from Natural Earth 110m data, projected (Miller cylindrical) and
+simplified ahead of time. It's ~80KB and you should never need to edit it.
+
+Pins are absolutely-positioned HTML over the SVG, placed in percentage
+coordinates, so they scale with the map and stay keyboard-focusable. Hovering a
+pin, a stamp, or a country lights all three. On narrow screens the map scrolls
+sideways instead of shrinking to illegibility.
+
+If you'd rather have a real zoomable slippy map later, Leaflet + OpenStreetMap
+would drop into the same `<div data-map>` container.
 
 ## Change the colours
 

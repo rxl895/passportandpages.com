@@ -642,3 +642,121 @@ p  { margin: 0 0 1.1em; }
   html { scroll-behavior: auto; }
   .js [data-reveal] { opacity: 1; transform: none; }
 }
+
+/* ---------- 9. Interactive map ---------- */
+.map-scroll { margin-bottom: clamp(1.5rem, 3vw, 2.25rem); }
+.map-wrap { position: relative; }
+.map { width: 100%; height: auto; display: block; }
+
+.map .c {
+  fill: color-mix(in srgb, var(--ink) 7%, var(--paper-3));
+  stroke: color-mix(in srgb, var(--ink-3) 50%, transparent);
+  stroke-width: .5;
+  stroke-linejoin: round;
+  transition: fill .3s;
+}
+.map .c--visited { fill: color-mix(in srgb, var(--teal) 30%, var(--paper-3)); }
+.map .c--wish {
+  fill: color-mix(in srgb, var(--gold) 15%, var(--paper-3));
+  stroke: color-mix(in srgb, var(--gold) 60%, transparent);
+  stroke-dasharray: 3 2.5;
+}
+.map .c.is-lit { fill: color-mix(in srgb, var(--red) 45%, var(--paper-3)); }
+
+/* pins sit over the svg in percentage coordinates, so they scale with it */
+.pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 20px; height: 20px;
+  display: grid; place-items: center;
+  z-index: 2;
+}
+.pin__dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--red);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--red) 20%, transparent);
+  transition: transform .28s cubic-bezier(.2,1.4,.4,1), box-shadow .28s;
+}
+.pin--teal .pin__dot { background: var(--teal); box-shadow: 0 0 0 3px color-mix(in srgb, var(--teal) 20%, transparent); }
+.pin--gold .pin__dot { background: var(--gold); box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 20%, transparent); }
+.pin--wish .pin__dot {
+  width: 11px; height: 11px;
+  background: transparent;
+  border: 2px dashed var(--ink-3);
+  box-shadow: none;
+}
+.pin:hover, .pin:focus-visible, .pin.is-lit { z-index: 6; }
+.pin:hover .pin__dot,
+.pin:focus-visible .pin__dot,
+.pin.is-lit .pin__dot { transform: scale(1.55); }
+
+/* a slow sonar ping on the most recent arrival */
+.pin--latest::after {
+  content: "";
+  position: absolute;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--red);
+  animation: ping 2.8s cubic-bezier(0,.5,.4,1) infinite;
+  pointer-events: none;
+}
+@keyframes ping {
+  0%        { transform: scale(1);   opacity: .45; }
+  70%, 100% { transform: scale(3.4); opacity: 0; }
+}
+
+.pin__card {
+  position: absolute; bottom: calc(100% + 11px); left: 50%;
+  transform: translate(-50%, 6px);
+  width: max-content; max-width: 215px;
+  display: grid; gap: .32rem;
+  text-align: left;
+  padding: .75rem .9rem;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  box-shadow: var(--shadow-lift);
+  opacity: 0; pointer-events: none;
+  transition: opacity .22s, transform .22s;
+}
+.pin:hover .pin__card,
+.pin:focus-visible .pin__card { opacity: 1; transform: translate(-50%, 0); }
+.pin--edge-r .pin__card { left: auto; right: -4px; transform: translate(0, 6px); }
+.pin--edge-r:hover .pin__card, .pin--edge-r:focus-visible .pin__card { transform: translate(0, 0); }
+.pin--edge-l .pin__card { left: -4px; transform: translate(0, 6px); }
+.pin--edge-l:hover .pin__card, .pin--edge-l:focus-visible .pin__card { transform: translate(0, 0); }
+
+.pin__where { font: 600 .6rem/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+.pin__title { font: 500 .97rem/1.3 var(--serif); color: var(--ink); }
+.pin__cta   { font: 600 .6rem/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--red); }
+.pin__soon  { font: 500 1.1rem/1 var(--hand); color: var(--ink-2); }
+
+.map-note {
+  font: 600 .68rem/1.8 var(--sans); letter-spacing: .16em; text-transform: uppercase;
+  color: var(--ink-3); margin: 0 0 clamp(2rem, 4vw, 3rem);
+}
+.map-note em {
+  font: 500 1.2rem/1 var(--hand); font-style: normal;
+  letter-spacing: 0; text-transform: none; color: var(--teal);
+}
+
+/* on small screens the map is scrolled rather than squashed */
+@media (max-width: 720px) {
+  .map-scroll {
+    overflow-x: auto;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+  .map-wrap { min-width: 640px; }
+  .pin__card { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pin--latest::after { animation: none; opacity: 0; }
+}
+
+/* the map hint depends on whether the visitor can hover */
+.hint-touch { display: none; }
+@media (max-width: 720px), (hover: none) {
+  .hint-fine  { display: none; }
+  .hint-touch { display: inline; }
+}

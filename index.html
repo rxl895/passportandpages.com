@@ -203,10 +203,23 @@
       <div class="sec-head" data-reveal>
         <div>
           <p class="kicker">The collection</p>
-          <h2>Every stamp, a page</h2>
-          <p>Twelve inked, two still waiting. Hover one to see when it landed.</p>
+          <h2>Where the pages come from</h2>
+          <p>Every country with a stamp is inked in on the map. Open a pin for its entry — or point at a stamp below and watch its country light up.</p>
         </div>
       </div>
+
+      <div class="map-scroll" data-reveal>
+        <div class="map-wrap" data-map>
+          <noscript>
+            <p class="map-note">The map needs JavaScript. The stamp collection below lists every country.</p>
+          </noscript>
+        </div>
+      </div>
+      <p class="map-note">
+        <span data-stamp-count>12</span> countries inked · 2 still on the list ·
+        <em class="hint-fine">hover a pin to open its page</em>
+        <em class="hint-touch">swipe the map · tap a pin to open it</em>
+      </p>
 
       <div class="stamp-grid" data-stamps data-reveal></div>
 
@@ -341,6 +354,7 @@
   </div>
 </footer>
 
+<script src="assets/js/world.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>
