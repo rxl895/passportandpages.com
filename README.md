@@ -7,8 +7,10 @@ step, no dependencies and no framework. Plain HTML, CSS and JS; the only thing
 you need to work on it is a text editor and a browser.
 
 ```
-index.html      home — hero, featured entry, recent pages, stamps, field notes
+index.html      home — hero, featured entry, recent pages, map, stamps, notes
+start-here.html curated entry point for new readers
 journal.html    full archive with region filters
+place.html      country page — place.html?c=Portugal (one template, all countries)
 entry.html      single-entry template (copy this for each new post)
 about.html      about page
 404.html        not-found page
@@ -32,13 +34,33 @@ that port — just open the URL, or pick another port.
 
 ## Add a new journal entry
 
-1. `cp entry.html posts/kyoto-standing-still.html` (or keep it flat, your call).
-2. Edit the `<title>`, description, `<h1>`, dek, and body copy.
-3. Margin notes are `<p class="marginal">…</p>` — on wide screens they float into
-   the margin in handwriting. Add `marginal--r` to send one to the right side.
-4. Add a card for it in `journal.html` and on the home page. Copy an existing
-   `<article class="card">` block; `data-region` must be one of
-   `europe · asia · africa · americas` for the filters to catch it.
+Two steps.
+
+**1. Write the page.** `cp entry.html lisbon-2.html`, then edit the `<title>`,
+description, `<h1>`, dek and body. Margin notes are `<p class="marginal">…</p>` —
+on wide screens they float into the margin in handwriting; add `marginal--r` to
+send one to the right. Set the related-entries container at the foot of the page
+to the new title: `<div class="cards" data-related="Your New Title"></div>`.
+
+**2. List it.** Add one line to the `ENTRIES` array at the top of
+`assets/js/main.js`:
+
+```js
+{ title: "The Loop, on a Bike I Could Not Ride", href: "hagiang.html",
+  country: "Vietnam", city: "Hà Giang", date: "2024-10-21", mins: 10,
+  region: "asia", img: "kyoto",
+  blurb: "Three hundred kilometres of switchbacks with a clutch hand I did not have on day one." },
+```
+
+That one line puts the entry on the home page, in the journal (with its
+continent filter), on its country's page, and into the "keep reading" cards at
+the foot of related entries. Nothing else to update.
+
+- `date` is `YYYY-MM-DD` and the list is **newest first** — order matters.
+- `region` is `europe`, `asia`, `africa` or `americas` (the journal filters).
+- `img` is a filename in `assets/img/` without the `.svg`.
+- Add `pick: "why a newcomer should start here"` and the entry is featured on
+  **start-here.html** in handwriting. Keep it to three or four picks.
 
 ## Add a place (map pin + stamp, one line)
 
@@ -60,6 +82,17 @@ country underneath it, and the rubber stamp in the collection grid.
 - `lat` / `lon` in decimal degrees — grab them from any map. North and east are
   positive, south and west negative.
 - The counters on the home page update themselves.
+
+## Country pages
+
+`place.html` is one template that serves every country — `place.html?c=Japan`,
+`place.html?c=Peru`, and so on. It builds itself from `STAMPS` and `ENTRIES`:
+the country's stamp, a locator map cropped from the same world data, every entry
+written there, and previous/next links around the collection. Add a country to
+`STAMPS` and its page exists immediately; there is nothing to generate.
+
+Map pins and stamps both link here, so a reader who clicks Portugal on the map
+lands on everything Portuguese rather than on a single post.
 
 ## About the map
 

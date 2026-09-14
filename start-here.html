@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>About — Passport &amp; Pages</title>
-<meta name="description" content="Who keeps the pages, why the journal exists, and what you won't find here.">
-<link rel="canonical" href="https://passportandpages.com/about.html">
-<meta property="og:title" content="About — Passport &amp; Pages">
-<meta property="og:description" content="Who keeps the pages, why the journal exists, and what you won't find here.">
+<title>Start here — Passport &amp; Pages</title>
+<meta name="description" content="New to the journal? Four entries to begin with, and how the rest of the site works.">
+<link rel="canonical" href="https://passportandpages.com/start-here.html">
+<meta property="og:title" content="Start here — Passport &amp; Pages">
+<meta property="og:description" content="New to the journal? Four entries to begin with, and how the rest of the site works.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://passportandpages.com/start-here.html">
 <meta name="theme-color" content="#FAF5EC">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,6 +26,7 @@
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
+
 <header class="hdr">
   <div class="wrap hdr__in">
     <a class="logo" href="index.html" aria-label="Passport and Pages — home">
@@ -34,15 +36,20 @@
         <path d="M11 15.5c3-1.3 6-1.3 9 0v10c-3-1.3-6-1.3-9 0v-10Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
         <path d="M29 15.5c-3-1.3-6-1.3-9 0v10c3-1.3 6-1.3 9 0v-10Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
       </svg>
-      <span><b>Passport &amp; Pages</b><small>Est. MMXXII</small></span>
+      <span>
+        <b>Passport &amp; Pages</b>
+        <small>Est. MMXXII</small>
+      </span>
     </a>
+
     <nav class="nav" id="nav" data-open="false">
-      <a href="start-here.html">Start here</a>
+      <a href="start-here.html" aria-current="page">Start here</a>
       <a href="journal.html">Journal</a>
       <a href="index.html#stamps">Map</a>
       <a href="index.html#notes">Field Notes</a>
-      <a href="about.html" aria-current="page">About</a>
+      <a href="about.html">About</a>
     </nav>
+
     <div class="tools">
       <button class="icon-btn" data-theme-toggle aria-label="Toggle day / night">
         <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.5 1.5M17.6 17.6l1.5 1.5M19.1 4.9l-1.5 1.5M6.4 17.6l-1.5 1.5"/></svg>
@@ -53,38 +60,19 @@
       </button>
     </div>
   </div>
-</header>
-<main id="main">
+</header><main id="main">
   <section class="hero wrap" style="padding-block:clamp(3rem,7vw,5rem) 0">
-    <p class="kicker">About</p>
-    <h1 style="max-width:15ch">A passport is a<br>terrible <em>notebook.</em></h1>
-    <p class="hero__lede">So I started keeping a better one. This is it.</p>
+    <p class="kicker">New here</p>
+    <h1 style="max-width:16ch">Twelve countries.<br>Start with <em>four.</em></h1>
+    <p class="hero__lede">
+      There's no right order — nothing here is a series. But if you've just
+      arrived and want to know whether this journal is for you, these are the
+      pages I'd hand you first.
+    </p>
   </section>
 
-  <section class="section wrap">
-    <div class="about">
-      <figure class="polaroid" data-reveal>
-        <img src="assets/img/portrait.svg" alt="Illustrated portrait against a warm landscape" width="600" height="600">
-        <figcaption>somewhere in the Atlas, 2025</figcaption>
-      </figure>
-      <div class="about__body" data-reveal style="--d:.1s">
-        <p>
-          Hello. I'm the one writing. I travel a few weeks a year — not full-time, not
-          professionally, just persistently — and I got tired of coming home with a camera
-          roll and no memory of what any of it felt like.
-        </p>
-        <p>
-          Passport &amp; Pages is the fix. Every trip gets a stamp on the wall and a real
-          entry here: what the place was actually like on an ordinary Tuesday, including
-          the parts that went badly. Especially those.
-        </p>
-        <p>
-          I write late, usually a week or two after getting back, once the trip has
-          settled into something with a shape. That's on purpose.
-        </p>
-        <span class="sig">— keep going</span>
-      </div>
-    </div>
+  <section class="section wrap" style="padding-top:clamp(2.5rem,5vw,3.5rem)">
+    <div class="picks" data-picks></div>
   </section>
 
   <hr class="rule wrap">
@@ -92,45 +80,69 @@
   <section class="section wrap">
     <div class="sec-head" data-reveal>
       <div>
-        <p class="kicker">House rules</p>
-        <h2>What you won't find here</h2>
+        <p class="kicker">How this works</p>
+        <h2>Three ways in</h2>
+        <p>However you like to browse, there's a door for it.</p>
       </div>
     </div>
     <div class="cards" data-reveal>
       <article class="card">
         <div class="card__body" style="padding-top:0">
-          <h3>No sponsored stays</h3>
-          <p>Nobody has comped me a hotel, and if that ever changes it will say so at the top of the page in large letters.</p>
+          <h3><a href="index.html#stamps">By map</a></h3>
+          <p>Every country with a stamp is inked in on a world map. Click a pin and you land on that country's page — everything written there, in one place.</p>
         </div>
       </article>
       <article class="card">
         <div class="card__body" style="padding-top:0">
-          <h3>No listicles</h3>
-          <p>There is no "12 hidden gems". There are places I went and what happened there, which is a different genre entirely.</p>
+          <h3><a href="journal.html">By date</a></h3>
+          <p>The journal is everything, newest first, filterable by continent. Good if you'd rather read the way it was written.</p>
         </div>
       </article>
       <article class="card">
         <div class="card__body" style="padding-top:0">
-          <h3>No perfect trips</h3>
-          <p>The missed trains stay in. The bad meal stays in. A trip without a wrong turn isn't a story, it's an itinerary.</p>
+          <h3><a href="index.html#notes">By scrap</a></h3>
+          <p>Field notes are the thoughts too small for a whole page — a sentence off the back of a boarding pass. The fastest way to get the tone.</p>
         </div>
       </article>
+    </div>
+  </section>
+
+  <hr class="rule wrap">
+
+  <section class="section wrap">
+    <div class="about">
+      <figure class="polaroid" data-reveal>
+        <img src="assets/img/portrait.svg" alt="" loading="lazy" width="600" height="600">
+        <figcaption>somewhere in the Atlas, 2025</figcaption>
+      </figure>
+      <div class="about__body" data-reveal style="--d:.1s">
+        <p class="kicker">What to expect</p>
+        <h2>Slow, late, and honest.</h2>
+        <p>
+          I write a week or two after getting back, once a trip has settled into
+          something with a shape. No sponsored stays, no ten-best lists, no
+          hidden gems. Just what a place was like on an ordinary Tuesday,
+          including the parts that went badly.
+        </p>
+        <a class="btn" href="about.html">More about me <span class="arw">→</span></a>
+        <span class="sig">— keep going</span>
+      </div>
     </div>
   </section>
 
   <section class="section wrap" id="postcards">
     <div class="postcard" data-reveal>
       <div>
-        <p class="kicker">Say hello</p>
-        <h2>Been somewhere I should go?</h2>
-        <p>Genuinely, tell me. Half of the list came from strangers. <a href="mailto:hello@passportandpages.com" style="border-bottom:1px solid var(--red)">hello@passportandpages.com</a></p>
+        <p class="kicker">Postcards, occasionally</p>
+        <h2>One letter, one place</h2>
+        <p>Roughly monthly. A new page, a photo that didn't make the cut, and where I'm headed next.</p>
       </div>
       <form class="form-wrap" data-signup>
         <div class="form">
           <input type="email" name="email" placeholder="your@email.com" aria-label="Email address" required>
-          <button class="btn btn--solid" type="submit">Get postcards</button>
+          <button class="btn btn--solid" type="submit">Send me one</button>
         </div>
-        <p class="form__note">Roughly monthly. Unsubscribe whenever.</p>
+        <p class="form__note">No spam, no affiliate links, no "10 hacks". Ever.</p>
       </form>
     </div>
   </section>
@@ -141,11 +153,11 @@
       <div>
         <a class="logo" href="index.html" style="margin-bottom:1.1rem">
           <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
-        <circle cx="20" cy="20" r="18.5" stroke="currentColor" stroke-width="1.6"/>
-        <circle cx="20" cy="20" r="15" stroke="currentColor" stroke-width=".9" stroke-dasharray="3 3" opacity=".55"/>
-        <path d="M11 15.5c3-1.3 6-1.3 9 0v10c-3-1.3-6-1.3-9 0v-10Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-        <path d="M29 15.5c-3-1.3-6-1.3-9 0v10c3-1.3 6-1.3 9 0v-10Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-      </svg>
+            <circle cx="20" cy="20" r="18.5" stroke="currentColor" stroke-width="1.6"/>
+            <circle cx="20" cy="20" r="15" stroke="currentColor" stroke-width=".9" stroke-dasharray="3 3" opacity=".55"/>
+            <path d="M11 15.5c3-1.3 6-1.3 9 0v10c-3-1.3-6-1.3-9 0v-10Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M29 15.5c-3-1.3-6-1.3-9 0v10c3-1.3 6-1.3 9 0v-10Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
           <span><b>Passport &amp; Pages</b></span>
         </a>
         <p class="ftr__blurb">Half passport, half paperback. Written slowly, from wherever the wifi reaches.</p>
@@ -154,8 +166,8 @@
         <h4>Read</h4>
         <ul>
           <li><a href="journal.html">The journal</a></li>
-          <li><a href="index.html#stamps">Stamp collection</a></li>
-          <li><a href="index.html#notes">Field notes</a></li>
+          <li><a href="#stamps">Stamp collection</a></li>
+          <li><a href="#notes">Field notes</a></li>
           <li><a href="about.html">About</a></li>
         </ul>
       </div>
@@ -164,7 +176,7 @@
         <ul>
           <li><a href="#" rel="me">Instagram</a></li>
           <li><a href="#" rel="me">Substack</a></li>
-          <li><a href="index.html#postcards">Postcards</a></li>
+          <li><a href="#postcards">Postcards</a></li>
           <li><a href="mailto:hello@passportandpages.com">Say hello</a></li>
         </ul>
       </div>
@@ -175,6 +187,7 @@
     </div>
   </div>
 </footer>
+
 
 <script src="assets/js/main.js"></script>
 </body>
