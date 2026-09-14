@@ -1,7 +1,10 @@
 # Passport & Pages
 
-Static site for **passportandpages.com** — *half passport, half paperback.*
-No build step, no dependencies, no framework. Plain HTML/CSS/JS.
+**Live: https://passportandpages.com**
+
+A travel journal — *half passport, half paperback.* Static site with no build
+step, no dependencies and no framework. Plain HTML, CSS and JS; the only thing
+you need to work on it is a text editor and a browser.
 
 ```
 index.html      home — hero, featured entry, recent pages, stamps, field notes
@@ -23,6 +26,9 @@ cd passportandpages
 python3 -m http.server 8000
 # open http://localhost:8000
 ```
+
+If that errors with `Address already in use`, a server is already running on
+that port — just open the URL, or pick another port.
 
 ## Add a new journal entry
 
@@ -82,20 +88,65 @@ Replace the files in `assets/img/` (keep the names, or update the `src`
 attributes). Images are `4/3` on cards and `16/9`-ish on the featured pass;
 anything close works — they're `object-fit: cover`.
 
-## Deploy
+## Publishing a change
 
-Any static host. Pick one:
+`git push` is the publish button. There is no dashboard and no build step.
 
-**Netlify** — drag this folder onto app.netlify.com/drop, then
-Site settings → Domain management → add `passportandpages.com`, and point your
-registrar's DNS at Netlify's nameservers.
+```bash
+git add -A
+git commit -m "Add the Kyoto entry"
+git push
+```
 
-**Vercel** — `npx vercel --prod` from this folder, then add the domain in the
-project's Domains tab.
+GitHub Pages redeploys automatically; the change is live in about a minute.
+Hard-reload (Cmd+Shift+R) if you still see the old version — GitHub's CDN caches
+for 10 minutes, so an unchanged-looking page is usually just cache.
 
-**GitHub Pages** — push to a repo, Settings → Pages → deploy from `main`.
-The `CNAME` file is already here; at your registrar add an `ALIAS`/`A` record for
-the apex to GitHub's IPs and a `CNAME` for `www` to `<user>.github.io`.
+## How the hosting is wired up
+
+Set up on 14 Sep 2026. You shouldn't need to touch any of this again, but here
+it is in case something breaks or you move hosts.
+
+**GitHub Pages** serves `main` from the repo root
+(`Settings → Pages → Deploy from a branch → main → /`). The repo has to stay
+**public** — Pages won't serve a private repo on the free plan.
+
+**The `CNAME` file** in this folder is what tells Pages the custom domain is
+`passportandpages.com`. Don't delete it; Pages rewrites its own copy and losing
+it drops the custom domain.
+
+**DNS lives at Spaceship** (nameservers `launch1/launch2.spaceship.net`), under
+Domain Manager → the domain → Advanced DNS:
+
+| Type  | Host  | Value             |
+|-------|-------|-------------------|
+| A     | `@`   | `185.199.108.153` |
+| A     | `@`   | `185.199.109.153` |
+| A     | `@`   | `185.199.110.153` |
+| A     | `@`   | `185.199.111.153` |
+| CNAME | `www` | `rxl895.github.io`|
+
+Those four IPs are GitHub's apex servers. The `www` CNAME is what makes
+`www.passportandpages.com` redirect to the bare domain.
+
+**HTTPS** is a Let's Encrypt certificate that GitHub issues and renews on its
+own — nothing to do, nothing to pay. *Enforce HTTPS* in Pages settings is what
+upgrades plain `http://` visitors to `https://`.
+
+### If the site ever goes down
+
+1. `curl -sI https://passportandpages.com/` — `Server: GitHub.com` means Pages
+   is answering and the problem is in the content, not the hosting.
+2. `dig +short passportandpages.com` — should return the four `185.199.*` IPs.
+   If it returns something else, Spaceship parking has crept back; re-add the
+   records above.
+3. Check the repo is still public, and that `CNAME` still exists on `main`.
+
+### Moving to another host
+
+Nothing here is GitHub-specific except `CNAME`. Netlify and Vercel both serve
+this folder as-is (and from a private repo, if you'd rather it not be public) —
+point them at the repo, then swap the DNS records above for theirs.
 
 ## The email form
 
